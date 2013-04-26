@@ -1,40 +1,27 @@
 #!/usr/bin/env python
 
+def what_is_my_sign(day,month):
 
-def what_is_my_sign(day, month):
-    if (month == 3 and day >= 21) or (month == 4 and day <= 20):
-        print('Овен')
-        return 'Овен'
-    if (month == 4 and day >= 21) or (month == 5 and day <= 20):
-        print('Телец')
-        return 'Телец'
-    if (month == 5 and day >= 21) or (month == 6 and day <= 20):
-        print('Близнаци')
-        return 'Близнаци'
-    if (month == 6 and day >= 21) or (month == 7 and day <= 21):
-        print('Рак')
-        return 'Рак'
-    if (month == 7 and day >= 22) or (month == 8 and day <= 22):
-        print('Лъв')
-        return 'Лъв'
-    if (month == 8 and day >= 23) or (month == 9 and day <= 22):
-        print('Дева')
-        return 'Дева'
-    if (month == 9 and day >= 23) or (month == 10 and day <= 22):
-        print('Везни')
-        return 'Везни'
-    if (month == 10 and day >= 23) or (month == 11 and day <= 21):
-        print('Скорпион')
-        return 'Скорпион'
-    if (month == 11 and day >= 22) or (month == 12 and day <= 21):
-        print('Стрелец')
-        return 'Стрелец'
-    if (month == 12 and day >= 22) or (month == 1 and day <= 19):
-        print('Козирог')
-        return 'Козирог'
-    if (month == 1 and day >= 20) or (month == 2 and day <= 18):
-        print('Водолей')
-        return 'Водолей'
-    if (month == 2 and day >= 19) or (month == 3 and day <= 20):
-        print('Риби')
-        return 'Риби'
+    HOROSCOPE_SIGNS = (
+        (1,19, 'Козирог'),
+        (2,18, 'Водолей'),
+        (3,20, 'Риби'),
+        (4,20, 'Овен'),
+        (5,20, 'Телец'),
+        (6,20, 'Близнаци'),
+        (7,21, 'Рак'),
+        (8,22, 'Лъв'),
+        (9,22, 'Дева'),
+        (10,22, 'Везни'),
+        (11,21, 'Скорпион'),
+        (12, 21, 'Стрелец')
+    )
+    
+    for month_in_the_year in range(0,13):
+        if HOROSCOPE_SIGNS[month_in_the_year][0] == month:
+            if HOROSCOPE_SIGNS[month_in_the_year][1] >= day:
+                return HOROSCOPE_SIGNS[month_in_the_year][2]
+            if HOROSCOPE_SIGNS[month_in_the_year][1] < day:
+                return HOROSCOPE_SIGNS[month_in_the_year+1][2]        
+
+
