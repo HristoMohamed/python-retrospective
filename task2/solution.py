@@ -4,26 +4,20 @@ import functools
 
 
 def groupby(func, seq):
-    returned_dict = {}
+    returned_dict = defaultdict(list)
     for item in seq:
-        key_to_test = func(item)
-        if key_to_test in returned_dict:
-            returned_dict[key_to_test].append(item)
-        else:
-            returned_dict[key_to_test] = [item]
-    return returned_dict
+        returned_dict[func(item).append(item)
+    return dict(returned_dict)
 
-
-def iterate(fn):
-    def repeater(arg, _count=1):
-        for i in range(_count):
-            arg = fn(arg)
-        return arg
-    count = 0
+def iterate(func):
+    def composition(function_one, function_two):
+        return lambda arg: function_one(function_two(arg))
+    
+    function = lambda arg: arg
+    
     while True:
-        yield functools.partial(repeater, _count=count)
-        count += 1
-
+        yield function
+        function = compose(func, function)
 
 def zip_with(func, *iterables):
     if len(iterables) == 0:
