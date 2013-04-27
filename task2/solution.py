@@ -19,39 +19,11 @@ def iterate(func):
         yield function
         function = compose(func, function)
 
+
 def zip_with(func, *iterables):
-    if len(iterables) == 0:
-        def generator():
-            yield None
-    else:
-        variable_length = len(iterables)
-        shortest_variable_length = len(iterables[0])
-        for item in iterables:
-            if shortest_variable_length > len(item):
-                shortest_variable_length = len(item)
+    for args in zip(*iterables):
+        yield func(*args)
 
-        def generator(variable_length, iterables, shortest_variable_length):
-
-            argument_list = []
-            second_position = 0
-            for first_position in range(0, variable_length):
-                argument_list.append(
-                    iterables[first_position][second_position])
-            while second_position < shortest_variable_length:
-                yield func(*argument_list)
-                second_position += 1
-                argument_list = []
-                for first_position in range(0, variable_length):
-                    argument_list.append(
-                        iterables[first_position][second_position])
-        generate_it = generator(
-            variable_length,
-            iterables,
-            shortest_variable_length)
-        return_list = []
-        for items in range(0, shortest_variable_length):
-            return_list.append(next(generate_it))
-    return return_list
 
 
 def cache(func, cache_size):
